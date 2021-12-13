@@ -57,4 +57,12 @@ public class Room {
     public String toString() {
         return String.format("De kamer %s is op plaats %d, %d.",this.type.toString(),this.x+1,this.y+1);
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }

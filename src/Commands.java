@@ -134,5 +134,6 @@ public class Commands {
         commands.add("exit");
         commands.add("look");
         commands.add("take");
+        commands.add("help");
     }
 }
