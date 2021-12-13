@@ -1,6 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        Game.loadFloorplan();
-        Game.printFloorplan();
+        Player p=new Player();
+        Game g=new Game(p);
+        g.printFloorplan();
+        g.printLocation();
     }
 }

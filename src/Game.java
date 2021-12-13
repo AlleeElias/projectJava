@@ -2,9 +2,40 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Game {
-    private static char[][] floorplan;
+    private Player p;
+    private int x;
+    private int y;
 
-    static void loadFloorplan(){
+    public Game(Player p){
+        loadFloorplan();
+        this.p=p;
+        readLocation('E');
+        p.setPosition(x,y);
+    }
+    public void loadGame(){
+
+    }
+    public void printLocation(){
+        System.out.println(String.format("Coordinaten: %d, %d",x,y));
+    }
+    private void readLocation(char l){
+        for(int i=0;i<10;i++){
+            for(int j=0;j<25;j++){
+                if(floorplan[i][j]==l){
+                    this.x=i;this.y=j;
+                    break;
+                }
+            }
+        }
+    }
+
+    private char[][] floorplan;
+
+    private enum rooms {
+        Gravel,Tree,River,WayTunnel,Cave,Mountain,Villager,Home,Dungeon,Shop,Exit
+    }
+
+    private void loadFloorplan(){
         floorplan=new char[10][25];
         try{
             BufferedReader bf=new BufferedReader(new FileReader("plattegrond.txt"));
@@ -25,8 +56,7 @@ public class Game {
             System.out.println(fnf);
         }
     }
-
-    static void printFloorplan(){
+    public void printFloorplan(){
         if(floorplan!=null){
             for(int i=0;i<10;i++){
                 for(int j=0;j<25;j++){
