@@ -1,16 +1,17 @@
 Als het spel opstart, wordt een map getoond waarin je kan wandelen.
 Deze map is een tweedimensionale array die uit een bestand wordt gelezen. (Zo kan de map makkelijker aangepast worden.)
 De locaties zullen volgende zijn:
-	Zandweg (graven naar goud)
-	Bos (hout verzamelen)
-	Rivier (hier kan je vissen)
-	Tunnel (hier kan je door wandelen en soms iets vinden)
-	Grot(vechten om een schat te vidnen)
-	Berg (hier kan je wandelen en eventueel iemand vinden)
-	Huisje (hier kan je iemand vinden en eventueel bestelen, je kan ook een nieuwe opdracht krijgen)
-	Woning (hier kan je rusten voor een bonus bij de volgende dobbelworp; je kan maar 1 keer per 5 beurten rusten OF rusten ivm een stamina systeem)
-	Kasteel (vechten om iets te winnen dat je nodig hebt)
-	Herberg (hier kan je dingen kopen/verkopen)
+	Gravem (graven naar goud) G
+	Tree (hout verzamelen) T
+	River (hier kan je vissen) R
+	WayTunnel (hier kan je door wandelen en soms iets vinden) W
+	Cave(vechten om een schat te vinden) C
+	Mountain (hier kan je wandelen en eventueel iemand vinden) M
+	Villager (hier kan je iemand vinden en eventueel bestelen, je kan ook een nieuwe opdracht krijgen) V
+	Home (hier kan je rusten voor een bonus bij de volgende dobbelworp; je kan maar 1 keer per 5 beurten rusten OF rusten ivm een stamina systeem) H
+	Dungeon (vechten om iets te winnen dat je nodig hebt) D
+	Shop (hier kan je dingen kopen/verkopen)  S
+	Entrance/Exit (begin en einde) E
 
 Je kan op elke plek behalve huisje,woning en herberg een vijand vinden. Je kan altijd vechten met een vijand.
 Je kan in de herberg en het huisje bestelen, maar als dat mislukt, moet je vechten en kan je later niet terug gaan om te ruilen
@@ -21,3 +22,17 @@ Je kan goud gebruiken om sommige objecten te kopen.
 Als je alle objecten hebt verzameld, dan kan je naar de uitgang lopen en en win je het spel.
 Als je al je stamina kwijt bent voor je kon rusten, ben je verloren.
 Verschillende locaties zullen meer/minder stamina gebruiken om te wandelen.
+
+Gravel G
+Tree T
+River R
+WayTunnel W
+Cave C
+Mountain M
+Villager V
+Home H
+Dungeon D
+Shop S
+Entrance/Exit E
+
+x=onbeslist
