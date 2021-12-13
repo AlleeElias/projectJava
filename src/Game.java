@@ -30,7 +30,7 @@ public class Game {
         readLocation('E');
         p.setPosition(x,y);
         //printLocation();
-        //printHelp();
+        printHelp();
         //printRooms();
         while(!finished){
             this.x=p.getX();this.y=p.getY();
@@ -70,7 +70,8 @@ public class Game {
     }
     //Print the help file
     public void printHelp(){
-
+        System.out.println(String.format("You have to walk around and look for items.\nWhen you have found enough gold, you can pay to leave.\nIf you run out of stamina,you lose!"));
+        c.printCommands();
     }
     //Read floorplan file and load the data into floorplan array
     private void loadFloorplan(){

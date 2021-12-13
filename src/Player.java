@@ -1,20 +1,28 @@
 import java.util.ArrayList;
 
 public class Player {
-    private ArrayList<String> invent;
+    private ArrayList<Item> invent;
     private int stamina;
     private int x;
     private int y;
 
     public Player() {
         stamina = 10;
-        invent=new ArrayList<String>();
+        invent = new ArrayList<Item>();
     }
 
-    public void checkInventory(){
-        for (String s:invent
-             ) {
-            System.out.println(s);
+    public void addItem(Item item){
+        invent.add(item);
+    }
+
+    public void checkInventory() {
+        if (invent.size() > 0) {
+            for (Item i : invent
+            ) {
+                System.out.println(i.toString());
+            }
+        } else {
+            System.out.println("Inventory is empty!");
         }
     }
 
@@ -50,7 +58,12 @@ public class Player {
     public int getY() {
         return y;
     }
-    public int getStamina(){
+
+    public void setStamina(int number) {
+        this.stamina += number;
+    }
+
+    public int getStamina() {
         return stamina;
     }
 }

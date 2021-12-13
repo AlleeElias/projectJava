@@ -4,12 +4,14 @@ import java.util.Scanner;
 public class Commands {
     private ArrayList<String> commands;
     private Player p;
-    Game g;
+    private Game g;
+    private Scanner s;
 
     public Commands(Player p,Game g){
         loadCommands();
         this.p=p;
         this.g=g;
+        this.s=new Scanner(System.in);
     }
 
     public void loadRooms(){
@@ -55,23 +57,39 @@ public class Commands {
         if(commands.contains(command)){
             switch (command){
                 case "run":
-                    move();
+                    move();break;
                 case "help":
                     g.printHelp();break;
                 case "inventory":
                     p.checkInventory();break;
                 case "exit":
-                    g.exit();
+                    g.exit();break;
+                case "look":
+                    g.getRooms().get(p.getX()).get(p.getY()).checkRoom();break;
+                case "take":
+                    takeItem();break;
             }
         }else{System.out.println("Dit commando bestaat niet!");}}
         else{g.setFinished();}
     }
-
+    //Choice of which item to take
+    private void takeItem(){
+        System.out.println("Welk item wil u nemen?");
+        int choice=s.nextInt();
+        p.addItem(g.getRooms().get(p.getX()).get(p.getY()).takeItem(choice));
+    }
+    //Choices after choosing to run
     private void move(){
         System.out.println("Where do you want to run? (up, down, left or right)");
-        Scanner s=new Scanner(System.in);
         String command=s.nextLine();
         p.movePlayer(command);
+    }
+    public void printCommands(){
+        System.out.println("Possible commands:");
+        for (String s:commands
+             ) {
+            System.out.println(s);
+        }
     }
 
     public String readLocation(){
@@ -111,5 +129,7 @@ public class Commands {
         commands.add("run");
         commands.add("inventory");
         commands.add("exit");
+        commands.add("look");
+        commands.add("take");
     }
 }
