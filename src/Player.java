@@ -14,6 +14,13 @@ public class Player {
     public void addItem(Item item){
         invent.add(item);
     }
+    public void useItem(int number){
+        Item usage=invent.get(number);
+        if(usage.getType()==Item.itemTypes.Stamina){
+            stamina+=usage.getStamina();
+            invent.remove(usage);
+        }
+    }
 
     public void checkInventory() {
         System.out.println(String.format("You have %d stamina left!",stamina));
@@ -68,7 +75,7 @@ public class Player {
     }
 
     public void setStamina(int number) {
-        this.stamina += number;
+        stamina += number;
     }
 
     public int getStamina() {

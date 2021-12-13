@@ -27,9 +27,10 @@ public class Room {
             case Gravel:
                 //add random item
                 if(rand==10){
-                    items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",5));
+                    items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",2));
                 }
-                //items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",5));break;
+                //Always add stamina potion to gravel, only for debugging
+                items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",5));break;
             case Tree:
                 items.add(new Item(Item.itemTypes.Weapon,"Stick",1));break;
         }

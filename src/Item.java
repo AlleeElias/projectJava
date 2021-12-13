@@ -27,4 +27,8 @@ public class Item extends Player{
         }
         else{return "NO ITEM?";}
     }
+
+    public itemTypes getType() {
+        return type;
+    }
 }

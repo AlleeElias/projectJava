@@ -129,7 +129,7 @@ public class Game {
 
     //Debug methods
     //Print data from floorplan
-    private void printFloorplan() {
+    public void printFloorplan() {
         if (floorplan != null) {
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 25; j++) {

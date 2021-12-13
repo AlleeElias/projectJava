@@ -68,6 +68,10 @@ public class Commands {
                     g.getRooms().get(p.getX()).get(p.getY()).checkRoom();break;
                 case "take":
                     takeItem();break;
+                case "use":
+                    useItem();break;
+                case "map":
+                    g.printFloorplan();break;
             }
         }else{System.out.println("Dit commando bestaat niet!");}}
         else{g.setFinished();}
@@ -87,6 +91,13 @@ public class Commands {
             System.out.println("Can't move that way!");
         }
     }
+    private void useItem(){
+        System.out.println("Which item would you like to use?");
+        p.checkInventory();
+        int choice=s.nextInt();
+        p.useItem(choice);
+    }
+
     public void printCommands(){
         System.out.println("Possible commands:");
         for (String s:commands
@@ -131,9 +142,11 @@ public class Commands {
         commands=new ArrayList<String>();
         commands.add("run");
         commands.add("inventory");
+        commands.add("use");
         commands.add("exit");
         commands.add("look");
         commands.add("take");
         commands.add("help");
+        commands.add("map");
     }
 }
