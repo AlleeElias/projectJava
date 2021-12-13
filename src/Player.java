@@ -7,10 +7,10 @@ public class Player {
     }
     public void movePlayer(String direction){
         switch (direction){
-            case "up":y--;break;
-            case "down":y++;break;
-            case "left":x--;break;
-            case "right":x++;break;
+            case "up":x--;break;
+            case "down":x++;break;
+            case "left":y--;break;
+            case "right":y++;break;
         }
     }
     public void setPosition(int x,int y){

@@ -15,12 +15,14 @@ public class Game {
         scan=new Scanner(System.in);
         loadFloorplan();
         this.p=p;
-        this.c=new Commands(this.p);
+        this.c=new Commands(this.p,this);
         readLocation('E');
         p.setPosition(x,y);
         startGame();
     }
     private void startGame(){
+        printFloorplan();
+        printLocation();
         while(!finished){
             System.out.println("Wat wil u doen?");
             command=scan.nextLine();
@@ -28,7 +30,8 @@ public class Game {
             printLocation();
         }
     }
-    public void printLocation(){
+    private void printLocation(){
+        System.out.println(c.readLocation());
         System.out.println(String.format("Coordinaten: %d, %d",p.getX(),p.getY()));
     }
     private void readLocation(char l){
@@ -67,7 +70,7 @@ public class Game {
             System.out.println(fnf);
         }
     }
-    public void printFloorplan(){
+    private void printFloorplan(){
         if(floorplan!=null){
             for(int i=0;i<10;i++){
                 for(int j=0;j<25;j++){
@@ -78,5 +81,9 @@ public class Game {
         }else{
             System.out.println("Geen array!");
         }
+    }
+
+    public char[][] getFloorplan() {
+        return floorplan;
     }
 }
