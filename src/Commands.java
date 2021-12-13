@@ -11,6 +11,43 @@ public class Commands {
         this.g=g;
     }
 
+    public void loadRooms(){
+        ArrayList<ArrayList<Room>> rooms=new ArrayList<ArrayList<Room>>();
+        for(int i=0;i<10;i++){
+            ArrayList<Room> currentLine=new ArrayList<Room>();
+            for(int j=0;j<25;j++){
+                switch (g.getFloorplan()[i][j]){
+                    case 'G':
+                        currentLine.add(new Room(i,j, Room.roomTypes.Gravel));break;
+                    case 'T':
+                        currentLine.add(new Room(i,j, Room.roomTypes.Tree));break;
+                    case 'R':
+                        currentLine.add(new Room(i,j, Room.roomTypes.River));break;
+                    case 'W':
+                        currentLine.add(new Room(i,j, Room.roomTypes.WayTunnel));break;
+                    case 'C':
+                        currentLine.add(new Room(i,j, Room.roomTypes.Cave));break;
+                    case 'M':
+                        currentLine.add(new Room(i,j, Room.roomTypes.Mountain));break;
+                    case 'V':
+                        currentLine.add(new Room(i,j, Room.roomTypes.Villager));break;
+                    case 'H':
+                        currentLine.add(new Room(i,j, Room.roomTypes.Home));break;
+                    case 'D':
+                        currentLine.add(new Room(i,j, Room.roomTypes.Dungeon));break;
+                    case 'S':
+                        currentLine.add(new Room(i,j, Room.roomTypes.Shop));break;
+                    case 'E':
+                        currentLine.add(new Room(i,j, Room.roomTypes.Exit));break;
+                    default:
+                        System.out.println("Room error");
+                }
+            }
+            rooms.add(currentLine);
+        }
+        g.setRooms(rooms);
+    }
+
     public void execute(String command){
         command=command.toLowerCase();
         if(p.getStamina()>0){
@@ -38,7 +75,7 @@ public class Commands {
     }
 
     public String readLocation(){
-        String room="non";
+        String room="";
         char c=g.getFloorplan()[p.getX()][p.getY()];
         switch (c){
             case 'G':
@@ -63,6 +100,8 @@ public class Commands {
                 room="You are trading in a shop.";break;
             case 'E':
                 room="You are standing at the exit.";break;
+            default:
+                room="Room error";
         }
         return room;
     }

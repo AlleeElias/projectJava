@@ -1,8 +1,11 @@
 import java.io.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
     private char[][] floorplan;
+    private ArrayList<ArrayList<Room>> rooms;
     private Player p;
     private Commands c;
     private int x;
@@ -10,12 +13,15 @@ public class Game {
     private String command;
     private boolean finished;
     Scanner scan;
+    private Room currentRoom;
 
     public Game(Player p){
+        this.rooms=new ArrayList<ArrayList<Room>>();
         scan=new Scanner(System.in);
         loadFloorplan();
         this.p=p;
         this.c=new Commands(this.p,this);
+        c.loadRooms();
         startGame();
     }
     private void startGame(){
@@ -23,6 +29,7 @@ public class Game {
         p.setPosition(x,y);
         printLocation();
         printHelp();
+        //printRooms();
         while(!finished){
             System.out.println("What to do?");
             command=scan.nextLine();
@@ -44,6 +51,7 @@ public class Game {
             for(int j=0;j<25;j++){
                 if(floorplan[i][j]==l){
                     this.x=i;this.y=j;
+                    //Exit after finding
                     break;
                 }
             }
@@ -52,10 +60,6 @@ public class Game {
     //Print the help file
     public void printHelp(){
 
-    }
-
-    private enum rooms {
-        Gravel,Tree,River,WayTunnel,Cave,Mountain,Villager,Home,Dungeon,Shop,Exit
     }
     //Read floorplan file and load the data into floorplan array
     private void loadFloorplan(){
@@ -79,6 +83,22 @@ public class Game {
             System.out.println(fnf);
         }
     }
+
+    public char[][] getFloorplan() {
+        return floorplan;
+    }
+    public void setFinished(){
+        finished=true;
+    }
+    public void setRooms(ArrayList<ArrayList<Room>> rooms){
+        this.rooms=rooms;
+    }
+
+    public ArrayList<ArrayList<Room>> getRooms() {
+        return rooms;
+    }
+
+    //Debug methods
     //Print data from floorplan
     private void printFloorplan(){
         if(floorplan!=null){
@@ -92,11 +112,14 @@ public class Game {
             System.out.println("Geen array!");
         }
     }
-
-    public char[][] getFloorplan() {
-        return floorplan;
-    }
-    public void setFinished(){
-        finished=true;
+    //Print data from rooms
+    private void printRooms(){
+        for (ArrayList<Room> ar:rooms
+             ) {
+            for (Room r:ar
+                 ) {
+                System.out.println(r.toString());
+            }
+        }
     }
 }
