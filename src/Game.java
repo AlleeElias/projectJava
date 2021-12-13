@@ -15,23 +15,31 @@ public class Game {
         scan=new Scanner(System.in);
         loadFloorplan();
         this.p=p;
-        this.c=new Commands(this.p);
-        readLocation('E');
-        p.setPosition(x,y);
+        this.c=new Commands(this.p,this);
         startGame();
     }
     private void startGame(){
+        readLocation('E');
+        p.setPosition(x,y);
+        printLocation();
+        printHelp();
         while(!finished){
-            System.out.println("Wat wil u doen?");
+            System.out.println("What to do?");
             command=scan.nextLine();
             c.execute(command);
             printLocation();
         }
+        System.out.printf("GAME OVER");
     }
-    public void printLocation(){
+    //Print the location of the player
+    private void printLocation(){
+        System.out.println(c.readLocation());
         System.out.println(String.format("Coordinaten: %d, %d",p.getX(),p.getY()));
     }
+
+    //Read the location of a chosen character
     private void readLocation(char l){
+        // Loop through the arrays until the right character is found
         for(int i=0;i<10;i++){
             for(int j=0;j<25;j++){
                 if(floorplan[i][j]==l){
@@ -41,11 +49,15 @@ public class Game {
             }
         }
     }
+    //Print the help file
+    public void printHelp(){
+
+    }
 
     private enum rooms {
         Gravel,Tree,River,WayTunnel,Cave,Mountain,Villager,Home,Dungeon,Shop,Exit
     }
-
+    //Read floorplan file and load the data into floorplan array
     private void loadFloorplan(){
         floorplan=new char[10][25];
         try{
@@ -67,7 +79,8 @@ public class Game {
             System.out.println(fnf);
         }
     }
-    public void printFloorplan(){
+    //Print data from floorplan
+    private void printFloorplan(){
         if(floorplan!=null){
             for(int i=0;i<10;i++){
                 for(int j=0;j<25;j++){
@@ -78,5 +91,12 @@ public class Game {
         }else{
             System.out.println("Geen array!");
         }
+    }
+
+    public char[][] getFloorplan() {
+        return floorplan;
+    }
+    public void setFinished(){
+        finished=true;
     }
 }
