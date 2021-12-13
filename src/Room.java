@@ -28,25 +28,27 @@ public class Room {
                 rand=r.nextInt(10);
                 //add random item
                 if(rand==5){
-                    items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",2));
+                    items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",2,25));
                 }
                 //Always add items to gravel, only for debugging
-                items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",5));
-                items.add(new Item(Item.itemTypes.Gold,"MONEY",50));
+                items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",5,50));
+                items.add(new Item(Item.itemTypes.Gold,"MONEY",50,50));
                 break;
             case Tree:
                 //Randomise hidden treasure
                 rand=r.nextInt(5);
                 if(rand==2){
-                    items.add(new Item(Item.itemTypes.Gold,"Hidden Treasure",r.nextInt(51)));
+                    items.add(new Item(Item.itemTypes.Gold,"Hidden Treasure",r.nextInt(51),0));
                 }
-                items.add(new Item(Item.itemTypes.Weapon,"Stick",1));break;
+                items.add(new Item(Item.itemTypes.Weapon,"Stick",1,5));break;
             case River:
                 //Randomise hidden treasure
                 rand=r.nextInt(5);
                 if(rand==2){
-                    items.add(new Item(Item.itemTypes.Gold,"Hidden Treasure",r.nextInt(51)));
+                    items.add(new Item(Item.itemTypes.Gold,"Hidden Treasure",r.nextInt(51),0));
                 }break;
+            case WayTunnel:
+                items.add(new Item(Item.itemTypes.Sell,"Rock",5,5));break;
         }
     }
 

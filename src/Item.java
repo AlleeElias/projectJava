@@ -2,14 +2,16 @@ public class Item extends Player{
     private itemTypes type;
     private String name;
     private int number;
+    private int value;
 
     public enum itemTypes{
-        Stamina,Weapon,Gold
+        Stamina,Weapon,Gold,Sell
     }
-    public Item(itemTypes type, String naam, int number){
+    public Item(itemTypes type, String naam, int number,int value){
         this.type=type;
         this.name=naam;
         this.number=number;
+        this.value=value;
     }
     public void useItem(){
         if(type==itemTypes.Stamina){
@@ -19,16 +21,7 @@ public class Item extends Player{
         }
     }
     public String toString(){
-        if(type==itemTypes.Stamina){
-            return String.format("%s which has %d healing.",name,number);
-        }
-        else if(type==itemTypes.Weapon){
-            return String.format("%s which has %d damage.",name,Math.abs(number));
-        }
-        else if(type==itemTypes.Gold){
-            return String.format("%s worth %d gold.",name,number);
-        }
-        else{return "NO ITEM?";}
+        return String.format("%s of type %s %d with value %d",name,type,number,value);
     }
 
     public itemTypes getType() {
