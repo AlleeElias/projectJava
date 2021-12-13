@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Commands {
     private ArrayList<String> commands;
@@ -53,25 +54,24 @@ public class Commands {
         if(p.getStamina()>0){
         if(commands.contains(command)){
             switch (command){
-                case "up":
-                    p.movePlayer(command);
-                    break;
-                case "down":
-                    p.movePlayer(command);
-                    break;
-                case "left":
-                    p.movePlayer(command);
-                    break;
-                case "right":
-                    p.movePlayer(command);
-                    break;
+                case "run":
+                    move();
                 case "help":
                     g.printHelp();break;
                 case "inventory":
                     p.checkInventory();break;
+                case "exit":
+                    g.exit();
             }
         }else{System.out.println("Dit commando bestaat niet!");}}
         else{g.setFinished();}
+    }
+
+    private void move(){
+        System.out.println("Where do you want to run? (up, down, left or right)");
+        Scanner s=new Scanner(System.in);
+        String command=s.nextLine();
+        p.movePlayer(command);
     }
 
     public String readLocation(){
@@ -108,10 +108,8 @@ public class Commands {
 
     private void loadCommands(){
         commands=new ArrayList<String>();
-        commands.add("up");
-        commands.add("down");
-        commands.add("left");
-        commands.add("right");
+        commands.add("run");
         commands.add("inventory");
+        commands.add("exit");
     }
 }

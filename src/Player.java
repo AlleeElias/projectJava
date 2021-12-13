@@ -14,7 +14,7 @@ public class Player {
     public void checkInventory(){
         for (String s:invent
              ) {
-            System.out.println("s");
+            System.out.println(s);
         }
     }
 

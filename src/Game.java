@@ -1,6 +1,8 @@
 import java.io.*;
 import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Game {
@@ -27,21 +29,30 @@ public class Game {
     private void startGame(){
         readLocation('E');
         p.setPosition(x,y);
-        printLocation();
-        printHelp();
+        //printLocation();
+        //printHelp();
         //printRooms();
         while(!finished){
+            this.x=p.getX();this.y=p.getY();
+            currentRoom=rooms.get(x).get(y);
+            System.out.println(currentRoom.toString());
             System.out.println("What to do?");
             command=scan.nextLine();
             c.execute(command);
-            printLocation();
+            //printLocation();
         }
         System.out.printf("GAME OVER");
     }
-    //Print the location of the player
-    private void printLocation(){
-        System.out.println(c.readLocation());
-        System.out.println(String.format("Coordinaten: %d, %d",p.getX(),p.getY()));
+
+    //Confirm exit choice
+    public void exit(){
+        System.out.println("Are you sure you want to exit? (y/n)");
+        String confirm= scan.nextLine().toLowerCase();
+        if(confirm.equals("y")){
+            System.exit(666);
+        }else {
+            System.out.println("Returning to game!");
+        }
     }
 
     //Read the location of a chosen character
@@ -121,5 +132,10 @@ public class Game {
                 System.out.println(r.toString());
             }
         }
+    }
+    //Print the location of the player
+    private void printLocation(){
+        System.out.println(c.readLocation());
+        System.out.println(String.format("Coordinaten: %d, %d",p.getX(),p.getY()));
     }
 }
