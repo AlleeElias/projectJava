@@ -1,8 +1,5 @@
 import java.io.*;
-import java.lang.reflect.Array;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Game {
@@ -84,7 +81,7 @@ public class Game {
 
     //Print the help file
     public void printHelp() {
-        System.out.println(String.format("You have to walk around and look for items.\nWhen you have found enough gold, you can pay to leave.\nIf you run out of stamina,you lose!"));
+        System.out.println(String.format("You have to walk around and look for items.\nWhen you have found enough gold, you can pay to leave.\nIf you run out of stamina,you lose!\nPlease keep in mind that inventories start counting from 0."));
         c.printCommands();
     }
 

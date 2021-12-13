@@ -3,21 +3,28 @@ import java.util.ArrayList;
 public class Player {
     private ArrayList<Item> invent;
     private int stamina;
+    private int gold;
     private int x;
     private int y;
 
     public Player() {
+        gold=0;
         stamina = 10;
         invent = new ArrayList<Item>();
     }
 
     public void addItem(Item item){
-        invent.add(item);
+        if(item.getType()== Item.itemTypes.Gold){
+            gold+=item.getNumber();
+            //invent.remove(item);
+        }else{
+            invent.add(item);
+        }
     }
     public void useItem(int number){
         Item usage=invent.get(number);
         if(usage.getType()==Item.itemTypes.Stamina){
-            stamina+=usage.getStamina();
+            setStamina(usage.getNumber());
             invent.remove(usage);
         }
     }
@@ -32,6 +39,7 @@ public class Player {
         } else {
             System.out.println("Inventory is empty!");
         }
+        System.out.println(String.format("You have %d gold.",gold));
     }
 
     //Moving the player

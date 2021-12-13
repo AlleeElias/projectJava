@@ -4,7 +4,7 @@ public class Item extends Player{
     private int number;
 
     public enum itemTypes{
-        Stamina,Weapon
+        Stamina,Weapon,Gold
     }
     public Item(itemTypes type, String naam, int number){
         this.type=type;
@@ -25,10 +25,17 @@ public class Item extends Player{
         else if(type==itemTypes.Weapon){
             return String.format("%s which has %d damage.",name,Math.abs(number));
         }
+        else if(type==itemTypes.Gold){
+            return String.format("%s worth %d gold.",name,number);
+        }
         else{return "NO ITEM?";}
     }
 
     public itemTypes getType() {
         return type;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

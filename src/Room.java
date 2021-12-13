@@ -22,17 +22,31 @@ public class Room {
     private void fillRoom(){
         //check random number
         Random r=new Random();
-        int rand=r.nextInt(20);
+        int rand=0;
         switch (type){
             case Gravel:
+                rand=r.nextInt(10);
                 //add random item
-                if(rand==10){
+                if(rand==5){
                     items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",2));
                 }
-                //Always add stamina potion to gravel, only for debugging
-                items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",5));break;
+                //Always add items to gravel, only for debugging
+                items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",5));
+                items.add(new Item(Item.itemTypes.Gold,"MONEY",50));
+                break;
             case Tree:
+                //Randomise hidden treasure
+                rand=r.nextInt(5);
+                if(rand==2){
+                    items.add(new Item(Item.itemTypes.Gold,"Hidden Treasure",r.nextInt(51)));
+                }
                 items.add(new Item(Item.itemTypes.Weapon,"Stick",1));break;
+            case River:
+                //Randomise hidden treasure
+                rand=r.nextInt(5);
+                if(rand==2){
+                    items.add(new Item(Item.itemTypes.Gold,"Hidden Treasure",r.nextInt(51)));
+                }break;
         }
     }
 
