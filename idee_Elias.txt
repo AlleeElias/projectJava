@@ -1,0 +1,23 @@
+Als het spel opstart, wordt een map getoond waarin je kan wandelen.
+Deze map is een tweedimensionale array die uit een bestand wordt gelezen. (Zo kan de map makkelijker aangepast worden.)
+De locaties zullen volgende zijn:
+	Zandweg (graven naar goud)
+	Bos (hout verzamelen)
+	Rivier (hier kan je vissen)
+	Tunnel (hier kan je door wandelen en soms iets vinden)
+	Grot(vechten om een schat te vidnen)
+	Berg (hier kan je wandelen en eventueel iemand vinden)
+	Huisje (hier kan je iemand vinden en eventueel bestelen, je kan ook een nieuwe opdracht krijgen)
+	Woning (hier kan je rusten voor een bonus bij de volgende dobbelworp; je kan maar 1 keer per 5 beurten rusten OF rusten ivm een stamina systeem)
+	Kasteel (vechten om iets te winnen dat je nodig hebt)
+	Herberg (hier kan je dingen kopen/verkopen)
+
+Je kan op elke plek behalve huisje,woning en herberg een vijand vinden. Je kan altijd vechten met een vijand.
+Je kan in de herberg en het huisje bestelen, maar als dat mislukt, moet je vechten en kan je later niet terug gaan om te ruilen
+
+Als je op een locatie binnen gaat, komt er lijstje dat toont wat je daar kan doen en vinden.
+Als je iets wil doen, zal je een dobbel moeten gooien en aan de hand van de dobbel, zal je falen of winnen.
+Je kan goud gebruiken om sommige objecten te kopen.
+Als je alle objecten hebt verzameld, dan kan je naar de uitgang lopen en en win je het spel.
+Als je al je stamina kwijt bent voor je kon rusten, ben je verloren.
+Verschillende locaties zullen meer/minder stamina gebruiken om te wandelen.
