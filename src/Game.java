@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
@@ -26,10 +25,11 @@ public class Game {
             System.out.println("Wat wil u doen?");
             command=scan.nextLine();
             c.execute(command);
+            printLocation();
         }
     }
     public void printLocation(){
-        System.out.println(String.format("Coordinaten: %d, %d",x,y));
+        System.out.println(String.format("Coordinaten: %d, %d",p.getX(),p.getY()));
     }
     private void readLocation(char l){
         for(int i=0;i<10;i++){

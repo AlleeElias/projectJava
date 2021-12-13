@@ -15,12 +15,16 @@ public class Commands {
             switch (command){
                 case "up":
                     p.movePlayer(command);
+                    break;
                 case "down":
                     p.movePlayer(command);
+                    break;
                 case "left":
                     p.movePlayer(command);
+                    break;
                 case "right":
                     p.movePlayer(command);
+                    break;
             }
         }else{System.out.println("Dit commando bestaat niet!");}
     }
