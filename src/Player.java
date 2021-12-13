@@ -5,8 +5,8 @@ public class Player {
     public Player(){
 
     }
-    public void movePlayer(){
-        
+    public void movePlayer(String direction){
+
     }
     public void setPosition(int x,int y){
         this.x=x;

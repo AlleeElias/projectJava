@@ -1,19 +1,32 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
+    private char[][] floorplan;
     private Player p;
+    private Commands c;
     private int x;
     private int y;
+    private String command;
+    private boolean finished;
+    Scanner scan;
 
     public Game(Player p){
+        scan=new Scanner(System.in);
         loadFloorplan();
         this.p=p;
+        this.c=new Commands(this.p);
         readLocation('E');
         p.setPosition(x,y);
+        startGame();
     }
-    public void loadGame(){
-
+    private void startGame(){
+        while(!finished){
+            System.out.println("Wat wil u doen?");
+            command=scan.nextLine();
+            c.execute(command);
+        }
     }
     public void printLocation(){
         System.out.println(String.format("Coordinaten: %d, %d",x,y));
@@ -28,8 +41,6 @@ public class Game {
             }
         }
     }
-
-    private char[][] floorplan;
 
     private enum rooms {
         Gravel,Tree,River,WayTunnel,Cave,Mountain,Villager,Home,Dungeon,Shop,Exit
