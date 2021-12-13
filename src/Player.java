@@ -16,6 +16,7 @@ public class Player {
     }
 
     public void checkInventory() {
+        System.out.println(String.format("You have %d stamina left!",stamina));
         if (invent.size() > 0) {
             for (Item i : invent
             ) {
@@ -26,23 +27,30 @@ public class Player {
         }
     }
 
+    //Moving the player
     public void movePlayer(String direction) {
+        //Mismatched x and y coords but they work this way
         if (stamina > 0) {
             switch (direction) {
                 case "up":
                     x--;
+                    stamina--;
                     break;
                 case "down":
                     x++;
+                    stamina--;
                     break;
                 case "left":
                     y--;
+                    stamina--;
                     break;
                 case "right":
                     y++;
+                    stamina--;
                     break;
+                default:
+                    System.out.println("That direction does not exist!");
             }
-            stamina--;
         }
     }
 

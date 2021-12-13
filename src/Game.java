@@ -39,10 +39,12 @@ public class Game {
                 this.x = p.getX();
                 this.y = p.getY();
                 currentRoom = rooms.get(x).get(y);
+
             }catch (IndexOutOfBoundsException oob){
                 //If it fails, room is unchanged but player is not, thus needing player position to be reset to the current room
                 p.setPosition(currentRoom.getX(), currentRoom.getY());
                 System.out.println("Can't run that way!");
+                p.setStamina(1);
             }
 
             System.out.println(currentRoom.toString());
