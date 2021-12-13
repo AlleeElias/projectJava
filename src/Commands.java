@@ -80,9 +80,12 @@ public class Commands {
     }
     //Choices after choosing to run
     private void move(){
+        try{
         System.out.println("Where do you want to run? (up, down, left or right)");
         String command=s.nextLine();
-        p.movePlayer(command);
+        p.movePlayer(command);}catch(ArrayIndexOutOfBoundsException oob){
+            System.out.println("Can't move that way!");
+        }
     }
     public void printCommands(){
         System.out.println("Possible commands:");

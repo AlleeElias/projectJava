@@ -34,7 +34,15 @@ public class Game {
         //printRooms();
         while(!finished){
             this.x=p.getX();this.y=p.getY();
-            currentRoom=rooms.get(x).get(y);
+
+            //If player moves out of bounds, reset him to the previous room!
+            try{
+                currentRoom=rooms.get(x).get(y);
+            }catch (IndexOutOfBoundsException oob){
+                System.out.println("Can't move that way!");
+                p.setPosition(x,y);
+            }
+
             System.out.println(currentRoom.toString());
             System.out.println("What to do?");
             command=scan.nextLine();
