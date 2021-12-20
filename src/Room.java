@@ -1,18 +1,19 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Room {
     private int x;
     private int y;
     private roomTypes type;
-    private ArrayList<Item> items;
+    private HashMap<Item,Integer> items;
 
     public enum roomTypes {
         Gravel,Tree,River,WayTunnel,Cave,Mountain,Villager,Home,Dungeon,Shop,Exit
     }
 
     public Room(int x,int y,roomTypes type){
-        this.items=new ArrayList<Item>();
+        this.items=new HashMap<Item,Integer>();
         this.x=x;
         this.y=y;
         this.type=type;
@@ -28,40 +29,58 @@ public class Room {
                 rand=r.nextInt(10);
                 //add random item
                 if(rand==5){
-                    items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",2,25));
+                    putItem(new Item(Item.itemTypes.Stamina,"Stamina Potion",2,25));
                 }
                 //Always add items to gravel, only for debugging
-                items.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",5,50));
-                items.add(new Item(Item.itemTypes.Gold,"MONEY",50,50));
+                putItem(new Item(Item.itemTypes.Stamina,"Stamina Potion",5,50));
+                putItem(new Item(Item.itemTypes.Gold,"MONEY",50,50));
                 break;
             case Tree:
                 //Randomise hidden treasure
                 rand=r.nextInt(5);
                 if(rand==2){
-                    items.add(new Item(Item.itemTypes.Gold,"Hidden Treasure",r.nextInt(51),0));
+                    putItem(new Item(Item.itemTypes.Gold,"Hidden Treasure",r.nextInt(51),0));
                 }
-                items.add(new Item(Item.itemTypes.Weapon,"Stick",1,5));break;
+                putItem(new Item(Item.itemTypes.Weapon,"Stick",1,5));break;
             case River:
                 //Randomise hidden treasure
                 rand=r.nextInt(5);
                 if(rand==2){
-                    items.add(new Item(Item.itemTypes.Gold,"Hidden Treasure",r.nextInt(51),0));
+                    putItem(new Item(Item.itemTypes.Gold,"Hidden Treasure",r.nextInt(51),0));
                 }break;
             case WayTunnel:
-                items.add(new Item(Item.itemTypes.Sell,"Rock",5,5));break;
+                putItem(new Item(Item.itemTypes.Sell,"Rock",5,5));break;
         }
     }
 
+    //Check if the item is already on the ground
+    private void putItem(Item item){
+        if(items.containsKey(item)){
+            items.replace(item,items.get(item)+1);
+        }else{
+            items.put(item,1);
+        }
+    }
     //Take an item out of the room
-    public Item takeItem(int i){
-        Item taken=items.get(i);
-        items.remove(i);
-        return taken;
+    public Item takeItem(String item){
+        for (Item i:items.keySet()
+             ) {
+            if(i.getName().equals(item)){
+                if(items.get(i)>1){
+                    items.replace(i,items.get(i)-1);
+                    return i;
+                }
+                else{
+                    items.remove(i);
+                    return i;
+                }
+            }else{return i;}
+        }return null;
     }
     //check the room contents
     public void checkRoom(){
         if(items.size()>0){
-            for (Item i:items
+            for (Item i:items.keySet()
                  ) {
                 System.out.println(i.toString());
             }

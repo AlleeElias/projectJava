@@ -79,7 +79,7 @@ public class Commands {
     //Choice of which item to take
     private void takeItem(){
         System.out.println("Welk item wil u nemen?");
-        int choice=s.nextInt();
+        String choice=s.nextLine();
         p.addItem(g.getRooms().get(p.getX()).get(p.getY()).takeItem(choice));
     }
     //Choices after choosing to run
@@ -94,8 +94,8 @@ public class Commands {
     private void useItem(){
         System.out.println("Which item would you like to use?");
         p.checkInventory();
-        int choice=s.nextInt();
-        p.useItem(choice);
+        String choice=s.nextLine();
+        p.checkItem(choice);
     }
 
     public void printCommands(){

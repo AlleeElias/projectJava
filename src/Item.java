@@ -31,4 +31,8 @@ public class Item extends Player{
     public int getNumber() {
         return number;
     }
+
+    public String getName() {
+        return name;
+    }
 }

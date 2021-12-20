@@ -1,45 +1,66 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Player {
-    private ArrayList<Item> invent;
+    private HashMap<Item, Integer> invent;
     private int stamina;
     private int gold;
     private int x;
     private int y;
 
     public Player() {
-        gold=0;
+        gold = 0;
         stamina = 10;
-        invent = new ArrayList<Item>();
+        invent = new HashMap<>();
     }
 
-    public void addItem(Item item){
-        if(item.getType()== Item.itemTypes.Gold){
-            gold+=item.getNumber();
-            //invent.remove(item);
-        }else{
-            invent.add(item);
+    public void addItem(Item item) {
+        if(item!=null){
+        if (invent.containsKey(item)) {
+            invent.replace(item, invent.get(item) + 1);
+        } else {
+            if (item.getType() == Item.itemTypes.Gold) {
+                gold += item.getNumber();
+                //invent.remove(item);
+            } else {
+                invent.put(item, 1);
+            }
+        }}
+    }
+
+    public void checkItem(String item) {
+        for (Item i : invent.keySet()) {
+            if(i.getName().equals(item)){
+                if(invent.get(i)>1){
+                    useItem(i);
+                }
+                else if(invent.get(i)==1){
+                    useItem(i);
+                    invent.remove(i);
+                }
+            }
+            //System.out.println(i.toString()+" x "+invent.get(i));
         }
     }
-    public void useItem(int number){
-        Item usage=invent.get(number);
-        if(usage.getType()==Item.itemTypes.Stamina){
-            setStamina(usage.getNumber());
-            invent.remove(usage);
+
+    //Seperate to keep checking of correct item and actual usage clearly distinct
+    private void useItem(Item item){
+        if(item.getType()== Item.itemTypes.Stamina){
+            setStamina(item.getNumber());
+            invent.replace(item,invent.get(item)-1);
         }
     }
 
     public void checkInventory() {
-        System.out.println(String.format("You have %d stamina left!",stamina));
+        //Only go over list if the inventory is not empty
         if (invent.size() > 0) {
-            for (Item i : invent
-            ) {
-                System.out.println(i.toString());
+            for (Item i : invent.keySet()) {
+                System.out.println(i.toString()+" x "+invent.get(i));
             }
         } else {
             System.out.println("Inventory is empty!");
         }
-        System.out.println(String.format("You have %d gold.",gold));
+        System.out.println(String.format("You have %d stamina left!", stamina));
+        System.out.println(String.format("You have %d gold.", gold));
     }
 
     //Moving the player
