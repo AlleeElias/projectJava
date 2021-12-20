@@ -37,6 +37,7 @@ public class Room {
                 //Always add items to gravel, only for debugging
                 putItem(new Item(Item.itemTypes.Stamina, "Stamina Potion", 5, 50));
                 putItem(new Item(Item.itemTypes.Gold, "MONEY", 50, 50));
+                enem=new Enemy("Testje",10,2);
                 break;
             case Tree:
                 //Randomise hidden treasure
@@ -150,5 +151,13 @@ public class Room {
 
     public int getY() {
         return y;
+    }
+
+    public NPC getTrader() {
+        return trader;
+    }
+
+    public Enemy getEnem() {
+        return enem;
     }
 }

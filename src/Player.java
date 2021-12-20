@@ -6,11 +6,13 @@ public class Player {
     private int gold;
     private int x;
     private int y;
+    private int damage;
 
     public Player() {
         gold = 0;
         stamina = 10;
         invent = new HashMap<>();
+        this.damage=2;
     }
 
     public void addItem(Item item) {
@@ -109,5 +111,12 @@ public class Player {
 
     public int getStamina() {
         return stamina;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+    public void addGold(int amount){
+        gold+=amount;
     }
 }

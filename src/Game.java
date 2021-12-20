@@ -13,6 +13,8 @@ public class Game {
     private boolean finished;
     Scanner scan;
     private Room currentRoom;
+    private NPC goodGuy;
+    private Enemy badGuy;
 
     public Game(Player p) {
         this.rooms = new ArrayList<ArrayList<Room>>();
@@ -46,11 +48,20 @@ public class Game {
 
             System.out.println(currentRoom.toString());
             System.out.println("What to do?");
-            command = scan.nextLine();
+            command = scan.nextLine().trim().toLowerCase();
             c.execute(command);
             //printLocation();
         }
         System.out.printf("GAME OVER");
+    }
+
+    public void fight(){
+        if(rooms.get(p.getX()).get(p.getY()).getEnem()!=null){
+            this.badGuy=rooms.get(p.getX()).get(p.getY()).getEnem();
+            badGuy.diceRoll(this.p);
+        }else{
+            System.out.println("Nobody to fight!");
+        }
     }
 
     //Confirm exit choice

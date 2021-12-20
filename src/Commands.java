@@ -92,6 +92,7 @@ public class Commands {
                         g.printFloorplan();
                         break;
                     case "fight":
+                        g.fight();
                         break;
                 }
             } else {
@@ -113,7 +114,7 @@ public class Commands {
     private void move() {
         try {
             System.out.println("Where do you want to run? (up, down, left or right)");
-            String command = s.nextLine();
+            String command = s.nextLine().trim().toLowerCase();
             p.movePlayer(command);
         } catch (ArrayIndexOutOfBoundsException oob) {
             System.out.println("Can't move that way!");
