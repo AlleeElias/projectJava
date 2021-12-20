@@ -15,8 +15,8 @@ public class Enemy {
     //dice roll for fighting and deciding who damages who
     public void diceRoll(Player p) {
         Random r = new Random();
-        int rand = r.nextInt(4);
-        if (rand >= 1) {
+        int rand = r.nextInt(6);
+        if (rand <= 1) {
             p.setStamina(-damage);
             System.out.println("Player lost!");
         } else {
@@ -25,7 +25,7 @@ public class Enemy {
                 health -= p.getDamage();
             }else{
                 isDead=true;
-                System.out.println("Enemy defeated!");
+                System.out.println("Enemy defeated! You won some gold!");
                 p.addGold(r.nextInt(51));
             }
         }
