@@ -7,6 +7,7 @@ public class Player {
     private int x;
     private int y;
     private int damage;
+    private boolean weaponized;
 
     public Player() {
         gold = 0;
@@ -33,22 +34,15 @@ public class Player {
         for (Item i : invent.keySet()) {
             if(i.getName().equals(item)){
                 if(invent.get(i)>1){
-                    useItem(i);
+                    i.useItem();
+                    invent.replace(i,invent.get(i));
                 }
                 else if(invent.get(i)==1){
-                    useItem(i);
+                    i.useItem();
                     invent.remove(i);
                 }
             }
             //System.out.println(i.toString()+" x "+invent.get(i));
-        }
-    }
-
-    //Seperate to keep checking of correct item and actual usage clearly distinct
-    private void useItem(Item item){
-        if(item.getType()== Item.itemTypes.Stamina){
-            setStamina(item.getNumber());
-            invent.replace(item,invent.get(item)-1);
         }
     }
 
@@ -109,6 +103,10 @@ public class Player {
         stamina += number;
     }
 
+    public void setDamage(int number){
+        damage+=number;
+    }
+
     public int getStamina() {
         return stamina;
     }
@@ -118,5 +116,13 @@ public class Player {
     }
     public void addGold(int amount){
         gold+=amount;
+    }
+
+    public boolean isWeaponized() {
+        return weaponized;
+    }
+
+    public void setWeaponized(boolean weaponized) {
+        this.weaponized = weaponized;
     }
 }

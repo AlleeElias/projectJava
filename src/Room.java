@@ -37,6 +37,7 @@ public class Room {
                 //Always add items to gravel, only for debugging
                 putItem(new Item(Item.itemTypes.Stamina, "Stamina Potion", 5, 50));
                 putItem(new Item(Item.itemTypes.Gold, "MONEY", 50, 50));
+                putItem(new Item(Item.itemTypes.Weapon,"SWORD",5,25));
                 enem=new Enemy("Testje",10,2);
                 break;
             case Tree:

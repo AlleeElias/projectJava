@@ -18,6 +18,13 @@ public class Item extends Player{
             super.setStamina(number);
         }
         if(type==itemTypes.Weapon){
+            if(!super.isWeaponized()){
+                super.setDamage(number);
+                super.setWeaponized(true);
+                System.out.println("Using a weapon now!");
+            }else{
+                System.out.println("problem");
+            }
         }
     }
     public String toString(){
