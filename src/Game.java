@@ -29,6 +29,7 @@ public class Game {
     private void startGame() {
         readLocation('E');
         p.setPosition(x, y);
+        p.addItem(new Item(Item.itemTypes.Stamina,"Starting potion",5,5));
         //printLocation();
         printHelp();
         //printRooms();

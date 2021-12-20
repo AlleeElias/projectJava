@@ -32,13 +32,13 @@ public class Player {
 
     public void checkItem(String item) {
         for (Item i : invent.keySet()) {
-            if(i.getName().equals(item)){
+            if(i.getName().toLowerCase().trim().equals(item.toLowerCase().trim())){
                 if(invent.get(i)>1){
-                    i.useItem();
+                    useItem(i);
                     invent.replace(i,invent.get(i));
                 }
                 else if(invent.get(i)==1){
-                    i.useItem();
+                    useItem(i);
                     invent.remove(i);
                 }
             }
@@ -57,6 +57,21 @@ public class Player {
         }
         System.out.println(String.format("You have %d stamina left!", stamina));
         System.out.println(String.format("You have %d gold.", gold));
+    }
+    //use an item
+    public void useItem(Item i){
+        if(i.getType()== Item.itemTypes.Stamina){
+            setStamina(i.getNumber());
+        }
+        else if(i.getType()== Item.itemTypes.Weapon){
+            if(!isWeaponized()){
+                setDamage(i.getNumber());
+                setWeaponized(true);
+                System.out.println("Using a weapon now!");
+            }else{
+                System.out.println("problem");
+            }
+        }
     }
 
     //Moving the player

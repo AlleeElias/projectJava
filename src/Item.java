@@ -13,20 +13,6 @@ public class Item extends Player{
         this.number=number;
         this.value=value;
     }
-    public void useItem(){
-        if(type==itemTypes.Stamina){
-            super.setStamina(number);
-        }
-        if(type==itemTypes.Weapon){
-            if(!super.isWeaponized()){
-                super.setDamage(number);
-                super.setWeaponized(true);
-                System.out.println("Using a weapon now!");
-            }else{
-                System.out.println("problem");
-            }
-        }
-    }
     public String toString(){
         return String.format("%s of type %s %d with value %d",name,type,number,value);
     }

@@ -94,6 +94,12 @@ public class Commands {
                     case "fight":
                         g.fight();
                         break;
+                    case "buy":
+                        buyItem();
+                        break;
+                    case "steal":
+                        stealItem();
+                        break;
                 }
             } else {
                 System.out.println("Dit commando bestaat niet!");
@@ -101,6 +107,14 @@ public class Commands {
         } else {
             g.setFinished();
         }
+    }
+    //Buy an item
+    public void buyItem(){
+
+    }
+    //Steal an item
+    public void stealItem(){
+
     }
 
     //Choice of which item to take
@@ -180,6 +194,7 @@ public class Commands {
         return room;
     }
 
+    //add commands to the list
     private void loadCommands() {
         commands = new ArrayList<String>();
         commands.add("run");
@@ -191,5 +206,7 @@ public class Commands {
         commands.add("help");
         commands.add("map");
         commands.add("fight");
+        commands.add("buy");
+        commands.add("steal");
     }
 }
