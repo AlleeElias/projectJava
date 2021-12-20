@@ -6,7 +6,7 @@ public class Room {
     private int x;
     private int y;
     private roomTypes type;
-    private HashMap<Item, Integer> items;
+    private ArrayList<Item> items;
     private NPC trader;
     private Enemy enem;
 
@@ -15,7 +15,7 @@ public class Room {
     }
 
     public Room(int x, int y, roomTypes type) {
-        this.items = new HashMap<Item, Integer>();
+        this.items=new ArrayList<Item>();
         this.x = x;
         this.y = y;
         this.type = type;
@@ -103,15 +103,12 @@ public class Room {
 
     //Check if the item is already on the ground
     private void putItem(Item item) {
-        if (items.containsKey(item)) {
-            items.replace(item, items.get(item) + 1);
-        } else {
-            items.put(item, 1);
-        }
+        items.add(item);
     }
 
     //Take an item out of the room
     public Item takeItem(String item) {
+        /*
         for (Item i : items.keySet()
         ) {
             if (i.getName().equals(item)) {
@@ -126,18 +123,23 @@ public class Room {
                 return i;
             }
         }
+        return null;*/
+        for (Item i:items
+             ) {
+            if(i.getName().toLowerCase().trim().equals(item.toLowerCase().trim())){
+                Item taken=i;
+                items.remove(i);
+                return taken;
+            }
+        }
         return null;
     }
 
     //check the room contents
     public void checkRoom() {
-        if (items.size() > 0) {
-            for (Item i : items.keySet()
-            ) {
-                System.out.println(i.toString());
-            }
-        } else {
-            System.out.println("No items in this room!");
+        for (Item i:items
+             ) {
+            System.out.println(i.toString());
         }
     }
 
