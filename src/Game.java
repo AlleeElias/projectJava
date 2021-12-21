@@ -120,22 +120,6 @@ public class Game {
         }
     }
 
-    public char[][] getFloorplan() {
-        return floorplan;
-    }
-
-    public void setFinished() {
-        finished = true;
-    }
-
-    public void setRooms(ArrayList<ArrayList<Room>> rooms) {
-        this.rooms = rooms;
-    }
-
-    public ArrayList<ArrayList<Room>> getRooms() {
-        return rooms;
-    }
-
     //Debug methods
     //Print data from floorplan
     public void printFloorplan() {
@@ -166,5 +150,26 @@ public class Game {
     private void printLocation() {
         System.out.println(c.readLocation());
         System.out.println(String.format("Coordinaten: %d, %d", p.getX(), p.getY()));
+    }
+
+    //ALL GETTERS AND SETTERS
+    public char[][] getFloorplan() {
+        return floorplan;
+    }
+
+    public void setFinished() {
+        finished = true;
+    }
+
+    public void setRooms(ArrayList<ArrayList<Room>> rooms) {
+        this.rooms = rooms;
+    }
+
+    public ArrayList<ArrayList<Room>> getRooms() {
+        return rooms;
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
     }
 }

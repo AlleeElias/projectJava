@@ -46,6 +46,16 @@ public class Player {
         }
     }
 
+    //DONE
+    public void buyItem(Item i){
+        if(gold-i.getValue()>=0){
+            gold-=i.getValue();
+            addItem(i);
+        }else{
+            System.out.println("Not enough gold!");
+        }
+    }
+
     public void checkInventory() {
         //Only go over list if the inventory is not empty
         if (invent.size() > 0) {
@@ -106,6 +116,7 @@ public class Player {
         this.y = y;
     }
 
+    //ALL GETTERS AND SETTERS
     public int getX() {
         return x;
     }

@@ -110,7 +110,20 @@ public class Commands {
     }
     //Buy an item
     public void buyItem(){
-
+        if (g.getCurrentRoom().getTrader() != null) {
+            NPC t=g.getCurrentRoom().getTrader();
+            t.showItem();
+            System.out.println("Are you sure?(y/n):");
+            String choice=s.nextLine();
+            if(choice.toLowerCase().trim().equals("y")){
+                t.buyItem();
+                p.buyItem(t.getItem());
+            }else{
+                System.out.println("OK");
+            }
+        }else {
+            System.out.println("There is no shop!");
+        }
     }
     //Steal an item
     public void stealItem(){
