@@ -16,7 +16,7 @@ public class Item extends Player{
         this.weight=weight;
     }
     public String toString(){
-        return String.format("%s of type %s %d with value %d",name,type,number,value);
+        return String.format("%s of type %s %d with value %d and weight %d",name,type,number,value,weight);
     }
 
     public itemTypes getType() {
