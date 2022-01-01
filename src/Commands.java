@@ -100,41 +100,57 @@ public class Commands {
                     case "steal":
                         stealItem();
                         break;
+                    case "drop":
+                        dropItem();
+                        break;
                 }
             } else {
-                System.out.println("Dit commando bestaat niet!");
+                System.out.println("No such command!");
             }
         } else {
             g.setFinished();
         }
     }
+
     //Buy an item
-    public void buyItem(){
+    public void buyItem() {
         if (g.getCurrentRoom().getTrader() != null) {
-            NPC t=g.getCurrentRoom().getTrader();
+            NPC t = g.getCurrentRoom().getTrader();
             t.showItem();
             System.out.println("Are you sure?(y/n):");
-            String choice=s.nextLine();
-            if(choice.toLowerCase().trim().equals("y")){
+            String choice = s.nextLine();
+            if (choice.toLowerCase().trim().equals("y")) {
                 t.buyItem();
                 p.buyItem(t.getItem());
-            }else{
+            } else {
                 System.out.println("OK");
             }
-        }else {
+        } else {
             System.out.println("There is no shop!");
         }
     }
+
     //Steal an item
-    public void stealItem(){
+    public void stealItem() {
 
     }
 
     //Choice of which item to take
     private void takeItem() {
-        System.out.println("Welk item wil u nemen?");
+        System.out.println("Which item to take?");
         String choice = s.nextLine();
-        p.addItem(g.getRooms().get(p.getX()).get(p.getY()).takeItem(choice));
+        Item i = g.getRooms().get(p.getX()).get(p.getY()).takeItem(choice);
+        if (p.getInvWeight() + i.getWeight() <= p.getMaxWeight()) {
+            p.addItem(i);
+        } else {
+            System.out.println("Item weight is too much.");
+        }
+    }
+
+    private void dropItem() {
+        System.out.println("Which item to drop?");
+        String choice = s.nextLine();
+        p.dropItem(choice);
     }
 
     //Choices after choosing to run
@@ -221,5 +237,6 @@ public class Commands {
         commands.add("fight");
         commands.add("buy");
         commands.add("steal");
+        commands.add("drop");
     }
 }

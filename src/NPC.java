@@ -16,10 +16,10 @@ public class NPC {
     //CHoose random item to sell!
     private void fillShop(){
         allItems=new ArrayList<Item>();
-        allItems.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",5,25));
-        allItems.add(new Item(Item.itemTypes.Stamina,"Strong Potion",10,50));
-        allItems.add(new Item(Item.itemTypes.Stamina,"ULTRA Potion",15,75));
-        allItems.add(new Item(Item.itemTypes.Stamina,"Golden Apple",25,100));
+        allItems.add(new Item(Item.itemTypes.Stamina,"Stamina Potion",5,25,5));
+        allItems.add(new Item(Item.itemTypes.Stamina,"Strong Potion",10,50,10));
+        allItems.add(new Item(Item.itemTypes.Stamina,"ULTRA Potion",15,75,15));
+        allItems.add(new Item(Item.itemTypes.Stamina,"Golden Apple",25,100,25));
 
         Random r=new Random();
         int rand=r.nextInt(allItems.size());

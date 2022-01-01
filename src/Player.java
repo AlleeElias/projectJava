@@ -8,24 +8,29 @@ public class Player {
     private int y;
     private int damage;
     private boolean weaponized;
+    private int invWeight;
+    private final int maxWeight=150;
 
     public Player() {
         gold = 0;
         stamina = 10;
         invent = new HashMap<>();
         this.damage=2;
+        this.invWeight=0;
     }
 
     public void addItem(Item item) {
         if(item!=null){
         if (invent.containsKey(item)) {
             invent.replace(item, invent.get(item) + 1);
+            invWeight+=item.getWeight();
         } else {
             if (item.getType() == Item.itemTypes.Gold) {
                 gold += item.getNumber();
                 //invent.remove(item);
             } else {
                 invent.put(item, 1);
+                invWeight+=item.getWeight();
             }
         }}
     }
@@ -35,7 +40,7 @@ public class Player {
             if(i.getName().toLowerCase().trim().equals(item.toLowerCase().trim())){
                 if(invent.get(i)>1){
                     useItem(i);
-                    invent.replace(i,invent.get(i));
+                    invent.replace(i,invent.get(i)+1);
                 }
                 else if(invent.get(i)==1){
                     useItem(i);
@@ -55,6 +60,21 @@ public class Player {
             System.out.println("Not enough gold!");
         }
     }
+    public void dropItem(String item){
+        for (Item i:invent.keySet()
+             ) {
+            if(item.trim().toLowerCase().equals(i.getName().toLowerCase().trim())){
+                if(invent.get(i)<=1){
+                    invWeight-=i.getWeight();
+                    invent.remove(i);
+                }else {
+                    invWeight-=i.getWeight();
+                    invent.replace(i,invent.get(i)-1);
+                }
+                break;
+            }
+        }
+    }
 
     public void checkInventory() {
         //Only go over list if the inventory is not empty
@@ -72,6 +92,7 @@ public class Player {
     public void useItem(Item i){
         if(i.getType()== Item.itemTypes.Stamina){
             setStamina(i.getNumber());
+            invWeight-=i.getWeight();
         }
         else if(i.getType()== Item.itemTypes.Weapon){
             if(!isWeaponized()){
@@ -150,5 +171,13 @@ public class Player {
 
     public void setWeaponized(boolean weaponized) {
         this.weaponized = weaponized;
+    }
+
+    public int getInvWeight() {
+        return invWeight;
+    }
+
+    public int getMaxWeight() {
+        return maxWeight;
     }
 }

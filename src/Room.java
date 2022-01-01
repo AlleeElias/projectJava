@@ -34,47 +34,47 @@ public class Room {
                 rand = r.nextInt(10);
                 //add random item
                 if (rand == 5) {
-                    putItem(new Item(Item.itemTypes.Stamina, "Stamina Potion", 2, 25));
+                    putItem(new Item(Item.itemTypes.Stamina, "Stamina Potion", 2, 25,5));
                 }
                 //Always add items to gravel, only for debugging
-                putItem(new Item(Item.itemTypes.Stamina, "Stamina Potion", 5, 50));
-                putItem(new Item(Item.itemTypes.Gold, "MONEY", 50, 50));
-                putItem(new Item(Item.itemTypes.Weapon, "SWORD", 5, 25));
+                putItem(new Item(Item.itemTypes.Stamina, "Stamina Potion", 5, 50,5));
+                putItem(new Item(Item.itemTypes.Gold, "MONEY", 50, 50,0));
+                putItem(new Item(Item.itemTypes.Weapon, "SWORD", 5, 25,10));
                 enem = new Enemy("Testje", 10, 2);
                 break;
             case Tree:
                 //Randomise hidden treasure
                 rand = r.nextInt(5);
                 if (rand == 2) {
-                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(51), 0));
+                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(51), 0,0));
                 }
-                putItem(new Item(Item.itemTypes.Weapon, "Stick", 1, 5));
+                putItem(new Item(Item.itemTypes.Weapon, "Stick", 1, 5,5));
                 break;
             case River:
                 //Randomise hidden treasure
                 rand = r.nextInt(5);
                 if (rand == 2) {
-                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(51), 0));
+                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(51), 0,0));
                 }
                 break;
             case WayTunnel:
-                putItem(new Item(Item.itemTypes.Sell, "Rock", 5, 5));
+                putItem(new Item(Item.itemTypes.Sell, "Rock", 5, 5,1));
                 rand = r.nextInt(5);
                 if (rand == 2) {
-                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(51), 0));
+                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(51), 0,0));
                 }
                 break;
             case Cave:
                 rand = r.nextInt(5);
                 if (rand == 2) {
-                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(51), 0));
+                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(51), 0,0));
                 }
                 enem = new Enemy("Troll", 10, 2);
                 break;
             case Mountain:
                 rand = r.nextInt(5);
                 if (rand == 2) {
-                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(51), 0));
+                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(51), 0,0));
                 }
                 enem = new Enemy("Wolf", 5, 1);
                 break;
@@ -86,7 +86,7 @@ public class Room {
             case Dungeon:
                 rand = r.nextInt(5);
                 if (rand == 2) {
-                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(251), 0));
+                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", r.nextInt(251), 0,0));
                 }
                 enem = new Enemy("LOBSTER", 25, 5);
                 break;
@@ -97,7 +97,7 @@ public class Room {
                 //A very small chance that you can find enough gold on the exit and win instantly
                 rand = r.nextInt(500);
                 if (rand == 5) {
-                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", 1500, 0));
+                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", 1500, 0,0));
                 }
                 break;
         }
