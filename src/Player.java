@@ -208,4 +208,8 @@ public class Player {
     public int getMaxWeight() {
         return maxWeight;
     }
+
+    public int getGold() {
+        return gold;
+    }
 }

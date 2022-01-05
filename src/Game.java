@@ -51,6 +51,10 @@ public class Game {
                 System.out.println("Can't run that way!");
                 p.setStamina(1);
             }
+            if(p.getGold()>=500){
+                System.out.println("You won the game!");
+                System.exit(69);
+            }
             //Show the current room everytime the player does something
             System.out.println(currentRoom.toString());
             System.out.println("What to do?");

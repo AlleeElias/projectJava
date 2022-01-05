@@ -36,11 +36,11 @@ public class Room {
                 if (rand == 5) {
                     putItem(new Item(Item.itemTypes.Stamina, "Stamina Potion", 2, 25,5));
                 }
-                //Always add items to gravel, only for debugging,to be disabled for uploading
+                /*//Always add items to gravel, only for debugging,to be disabled for uploading
                 putItem(new Item(Item.itemTypes.Stamina, "Stamina Potion", 5, 50,5));
                 putItem(new Item(Item.itemTypes.Gold, "MONEY", 50, 50,0));
                 putItem(new Item(Item.itemTypes.Weapon, "SWORD", 5, 25,10));
-                enem = new Enemy("Testje", 10, 2);
+                enem = new Enemy("Testje", 10, 2);*/
                 break;
             case Tree:
                 //Randomise hidden treasure
@@ -96,8 +96,9 @@ public class Room {
             case Exit:
                 //A very small chance that you can find enough gold on the exit and win instantly
                 rand = r.nextInt(500);
+                //rand=5;
                 if (rand == 5) {
-                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", 1500, 0,0));
+                    putItem(new Item(Item.itemTypes.Gold, "Hidden Treasure", 1500, 1500,0));
                 }
                 break;
         }
