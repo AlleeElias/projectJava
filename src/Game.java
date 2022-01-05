@@ -26,13 +26,18 @@ public class Game {
         startGame();
     }
 
+    //Game start and loop
     private void startGame() {
+        //Read the location of exit to set start position
         readLocation('E');
         p.setPosition(x, y);
+        //Give the player a starting item
         p.addItem(new Item(Item.itemTypes.Stamina,"Starting potion",5,5,5));
         //printLocation();
         printHelp();
         //printRooms();
+
+        //Start a loop to keep running until the player wins
         while (!finished) {
             //Had to try catch here to catch the oob
             try{
@@ -46,9 +51,10 @@ public class Game {
                 System.out.println("Can't run that way!");
                 p.setStamina(1);
             }
-
+            //Show the current room everytime the player does something
             System.out.println(currentRoom.toString());
             System.out.println("What to do?");
+            //Read the command and then pass it to commands class to be executed
             command = scan.nextLine().trim().toLowerCase();
             c.execute(command);
             //printLocation();
@@ -56,7 +62,9 @@ public class Game {
         System.out.printf("GAME OVER");
     }
 
+    //Fight an enemy
     public void fight(){
+        //If the room has an enemy
         if(rooms.get(p.getX()).get(p.getY()).getEnem()!=null){
             this.badGuy=rooms.get(p.getX()).get(p.getY()).getEnem();
             badGuy.diceRoll(this.p);
@@ -91,7 +99,7 @@ public class Game {
         }
     }
 
-    //Print the help file
+    //Print the help
     public void printHelp() {
         System.out.println(String.format("You have to walk around and look for items.\nWhen you have found enough gold, you can pay to leave.\nIf you run out of stamina,you lose!\nPlease keep in mind that inventories start counting from 0."));
         c.printCommands();

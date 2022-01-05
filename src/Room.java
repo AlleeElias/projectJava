@@ -36,7 +36,7 @@ public class Room {
                 if (rand == 5) {
                     putItem(new Item(Item.itemTypes.Stamina, "Stamina Potion", 2, 25,5));
                 }
-                //Always add items to gravel, only for debugging
+                //Always add items to gravel, only for debugging,to be disabled for uploading
                 putItem(new Item(Item.itemTypes.Stamina, "Stamina Potion", 5, 50,5));
                 putItem(new Item(Item.itemTypes.Gold, "MONEY", 50, 50,0));
                 putItem(new Item(Item.itemTypes.Weapon, "SWORD", 5, 25,10));
@@ -139,7 +139,7 @@ public class Room {
     //Tostring and getters/setters
     @Override
     public String toString() {
-        return String.format("De kamer %s is op plaats %d, %d.", this.type.toString(), this.x + 1, this.y + 1);
+        return String.format("Room type:  %s on %d, %d.", this.type.toString(), this.x + 1, this.y + 1);
     }
 
     public int getX() {

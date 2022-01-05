@@ -16,6 +16,7 @@ public class Enemy {
     public void diceRoll(Player p) {
         Random r = new Random();
         int rand = r.nextInt(6);
+        //Player loses if random number is lower or equal to 1
         if (rand <= 1) {
             p.setStamina(-damage);
             System.out.println("Player lost!");
@@ -24,6 +25,7 @@ public class Enemy {
                 System.out.println("Player won!");
                 health -= p.getDamage();
             }else{
+                //If the player kills an enemy, he will receive a random amount of gold
                 isDead=true;
                 System.out.println("Enemy defeated! You won some gold!");
                 p.addGold(r.nextInt(51));

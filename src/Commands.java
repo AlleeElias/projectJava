@@ -62,6 +62,7 @@ public class Commands {
         g.setRooms(rooms);
     }
 
+    //Check which command is entered and run something based on that
     public void execute(String command) {
         command = command.toLowerCase();
         if (p.getStamina() > 0) {
@@ -114,6 +115,7 @@ public class Commands {
 
     //Buy an item
     public void buyItem() {
+        //Check if the room has a trader
         if (g.getCurrentRoom().getTrader() != null) {
             NPC t = g.getCurrentRoom().getTrader();
             t.showItem();
@@ -130,23 +132,28 @@ public class Commands {
         }
     }
 
-    //Steal an item
+    //Steal an item //not implemented
     public void stealItem() {
 
     }
 
     //Choice of which item to take
+    //Takes an item from a room
     private void takeItem() {
         System.out.println("Which item to take?");
         String choice = s.nextLine();
         Item i = g.getRooms().get(p.getX()).get(p.getY()).takeItem(choice);
-        if (p.getInvWeight() + i.getWeight() <= p.getMaxWeight()) {
-            p.addItem(i);
-        } else {
-            System.out.println("Item weight is too much.");
+        if (i!=null){
+            if (p.getInvWeight() + i.getWeight() <= p.getMaxWeight()) {
+                p.addItem(i);
+            } else {
+                System.out.println("Item weight is too much.");
+            }
+        }else {
+            System.out.println("Item does not exist!");
         }
     }
-
+    //Drop item from your inventory
     private void dropItem() {
         System.out.println("Which item to drop?");
         String choice = s.nextLine();
@@ -164,6 +171,7 @@ public class Commands {
         }
     }
 
+    //Use an item from the inventory
     private void useItem() {
         System.out.println("Which item would you like to use?");
         p.checkInventory();
@@ -171,6 +179,7 @@ public class Commands {
         p.checkItem(choice);
     }
 
+    //Show all commands
     public void printCommands() {
         System.out.println("Possible commands:");
         for (String s : commands
@@ -179,7 +188,7 @@ public class Commands {
         }
     }
 
-    //Not used anymore
+    //display the map
     public String readLocation() {
         String room = "";
         char c = g.getFloorplan()[p.getX()][p.getY()];

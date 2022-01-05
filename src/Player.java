@@ -9,42 +9,62 @@ public class Player {
     private int damage;
     private boolean weaponized;
     private int invWeight;
-    private final int maxWeight=150;
+    private final int maxWeight = 150;
 
     public Player() {
         gold = 0;
         stamina = 10;
         invent = new HashMap<>();
-        this.damage=2;
-        this.invWeight=0;
+        this.damage = 2;
+        this.invWeight = 0;
     }
 
+    //Add an item to the player inventory
     public void addItem(Item item) {
+        boolean isThere=false;
+        //Version 2
+        //Check if the item is not null
         if(item!=null){
-        if (invent.containsKey(item)) {
-            invent.replace(item, invent.get(item) + 1);
-            invWeight+=item.getWeight();
-        } else {
-            if (item.getType() == Item.itemTypes.Gold) {
-                gold += item.getNumber();
-                //invent.remove(item);
-            } else {
-                invent.put(item, 1);
-                invWeight+=item.getWeight();
+            //Check if it is gold
+            if(item.getType()== Item.itemTypes.Gold){
+                gold+=item.getValue();
             }
-        }}
+            //Check if player can carry item
+            else if(item.getWeight()+invWeight<=maxWeight){
+                //Check inventory size
+                if(invent.size()>=1){
+                    //Look through items to see if it is already in the inventory
+                    for (Item i:invent.keySet()
+                    ) {
+                        //Bool check to add new items based on name
+                        if(item.getName().equalsIgnoreCase(i.getName())){
+                            invent.replace(i,invent.get(i)+1);
+                            isThere=true;
+                        }
+                    }
+                }
+                //If the item was not found, it will be added
+                if(!isThere){invent.put(item,1);}
+            }else {
+                System.out.println("Item too heavy!");
+            }
+        }
     }
 
+    //Checks for items and uses them if possible
     public void checkItem(String item) {
+        //Loop through all items
         for (Item i : invent.keySet()) {
-            if(i.getName().toLowerCase().trim().equals(item.toLowerCase().trim())){
-                if(invent.get(i)>1){
+            //Check if the name of the item exists
+            if (i.getName().toLowerCase().trim().equals(item.toLowerCase().trim())) {
+                if (invent.get(i) > 1) {
                     useItem(i);
-                    invent.replace(i,invent.get(i)+1);
-                }
-                else if(invent.get(i)==1){
+                    invent.replace(i, invent.get(i) - 1);
+                    break;
+                } else if (invent.get(i) == 1) {
                     useItem(i);
                     invent.remove(i);
+                    break;
                 }
             }
             //System.out.println(i.toString()+" x "+invent.get(i));
@@ -52,35 +72,39 @@ public class Player {
     }
 
     //DONE
-    public void buyItem(Item i){
-        if(gold-i.getValue()>=0){
-            gold-=i.getValue();
+    public void buyItem(Item i) {
+        //Removes gold from inventory if the player has enough gold
+        if (gold - i.getValue() >= 0) {
+            gold -= i.getValue();
             addItem(i);
-        }else{
+        } else {
             System.out.println("Not enough gold!");
         }
     }
-    public void dropItem(String item){
-        for (Item i:invent.keySet()
-             ) {
-            if(item.trim().toLowerCase().equals(i.getName().toLowerCase().trim())){
-                if(invent.get(i)<=1){
-                    invWeight-=i.getWeight();
+
+    //Drop an item from the player inventory
+    public void dropItem(String item) {
+        for (Item i : invent.keySet()
+        ) {
+            if (item.trim().toLowerCase().equals(i.getName().toLowerCase().trim())) {
+                if (invent.get(i) <= 1) {
+                    invWeight -= i.getWeight();
                     invent.remove(i);
-                }else {
-                    invWeight-=i.getWeight();
-                    invent.replace(i,invent.get(i)-1);
+                } else {
+                    invWeight -= i.getWeight();
+                    invent.replace(i, invent.get(i) - 1);
                 }
                 break;
             }
         }
     }
 
+    //Show the player inventory
     public void checkInventory() {
         //Only go over list if the inventory is not empty
         if (invent.size() > 0) {
             for (Item i : invent.keySet()) {
-                System.out.println(i.toString()+" x "+invent.get(i));
+                System.out.println(i.toString() + " x " + invent.get(i));
             }
         } else {
             System.out.println("Inventory is empty!");
@@ -88,19 +112,22 @@ public class Player {
         System.out.println(String.format("You have %d stamina left!", stamina));
         System.out.println(String.format("You have %d gold.", gold));
     }
+
     //use an item
-    public void useItem(Item i){
-        if(i.getType()== Item.itemTypes.Stamina){
+    public void useItem(Item i) {
+        if (i.getType() == Item.itemTypes.Stamina) {
             setStamina(i.getNumber());
-            invWeight-=i.getWeight();
+            invWeight -= i.getWeight();
         }
-        else if(i.getType()== Item.itemTypes.Weapon){
-            if(!isWeaponized()){
+        //If the item is a weapon it will not be removed from the inventory
+        else if (i.getType() == Item.itemTypes.Weapon) {
+            if (!isWeaponized()) {
                 setDamage(i.getNumber());
                 setWeaponized(true);
                 System.out.println("Using a weapon now!");
-            }else{
-                System.out.println("problem");
+            } else {
+                setDamage(-i.getNumber());
+                setWeaponized(false);
             }
         }
     }
@@ -150,8 +177,8 @@ public class Player {
         stamina += number;
     }
 
-    public void setDamage(int number){
-        damage+=number;
+    public void setDamage(int number) {
+        damage += number;
     }
 
     public int getStamina() {
@@ -161,8 +188,9 @@ public class Player {
     public int getDamage() {
         return damage;
     }
-    public void addGold(int amount){
-        gold+=amount;
+
+    public void addGold(int amount) {
+        gold += amount;
     }
 
     public boolean isWeaponized() {
